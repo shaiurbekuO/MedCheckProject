@@ -41,7 +41,7 @@ public class Main {
         departments.get(1).setId(2L);
         departments.get(2).setId(3L);
 
-        Hospital hospital = new Hospital();
+        Hospital hospital = new Hospital(1L, "Bishkek Hospital", "Grazhdanskyi 119");
         hospital.setDepartments(departments);
 
         Doctor doctor1 = new Doctor(1L, "Test", "Test", Gender.MALE, 2);
@@ -49,19 +49,13 @@ public class Main {
         Doctor doctor3 = new Doctor(3L, "Test3", "Test", Gender.MALE, 5);
         List<Long> doctorsId = new ArrayList<>(List.of(doctor1.getId(), doctor2.getId(), doctor3.getId()));
 
-        hospital.setDoctors(new ArrayList<>(List.of(doctor1, doctor2, doctor3)));
-        datebas.setHospitals(new ArrayList<>(List.of(hospital)));
-
-        String result = doctorService.assignDoctorToDepartment(1L, doctorsId);
-        System.out.println(result); // "Success"
-
         ArrayList<Patient> patients = new ArrayList<>(List.of(
                 new Patient("Omurbek", "Shayrbek uulu", 22, Gender.MALE),
                 new Patient("Mirbek", "Rustamov", 25, Gender.MALE),
                 new Patient("Sezim", "Nurbekova", 22, Gender.FEMALE)
         ));
-        Hospital hospital1 = new Hospital(1L,"Hospital","bishkek");
-        hospitalService.addHospital(hospital1);
+
+        hospitalService.addHospital(hospital);
         doctorService.add(1L, doctor1);
         doctorService.add(1L, doctor2);
         doctorService.add(1L, doctor3);
@@ -71,6 +65,11 @@ public class Main {
         patentService.add(1L, patients.get(0));
         patentService.add(1L, patients.get(1));
         patentService.add(1L, patients.get(2));
+
+
+        String result = doctorService.assignDoctorToDepartment(1L, doctorsId);
+        System.out.println(result); // "Success"
+
 //        System.out.println(hospitalService.findHospitalById(1L));
 //        System.out.println(hospitalService.deleteHospitalById(1L));
 //        System.out.println(hospitalService.getAllHospitalByAddress("bishkek"));

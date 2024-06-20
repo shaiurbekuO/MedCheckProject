@@ -14,9 +14,7 @@ public class Datebas {
     private ArrayList<Hospital> hospitals = new ArrayList<>();
     private ArrayList<Patient> patients = new ArrayList<>();
 
-    public ArrayList<Hospital> getHospitals() {
-        return hospitals;
-    }
+    public ArrayList<Hospital> getHospitals() {return hospitals;}
 
     public void setHospitals(ArrayList<Hospital> hospitals) {
         this.hospitals = hospitals;

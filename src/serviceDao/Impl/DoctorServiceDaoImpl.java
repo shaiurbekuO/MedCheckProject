@@ -36,18 +36,18 @@ public class DoctorServiceDaoImpl implements DoctorServiceDao, GenericServiceDao
 
     @Override
     public String assignDoctorToDepartment(Long departmentId, List<Long> doctorsId) {
+
         for (Hospital hospital: datebas.getHospitals()){
             for (Department department: hospital.getDepartments()){
                 if (department.getId().equals(departmentId)) {
-                    if (department.getDoctors() == null) {
-                        department.setDoctors(new ArrayList<>());
+                    if (department.getDoctors() == null){ department.setDoctors(new ArrayList<>());}
                         for (Doctor doctor : hospital.getDoctors()) {
-                            if (doctor.equals(doctorsId)) {
+                            if (doctorsId.contains(doctor.getId())) {
                                 department.getDoctors().add(doctor);
                                 return "Success";
                             }
                         }
-                    }
+
                 }
             }
         }
